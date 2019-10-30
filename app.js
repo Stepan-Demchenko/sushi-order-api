@@ -26,5 +26,6 @@ app.use('/api/order', orderRoutes);
 app.use('/api/analytics', orderAnalytics);
 app.use('/api/category', orderCategory);
 app.use('/api/position', orderPosition);
+app.use('/api/uploads', express.static(process.cwd()+'/uploads'));
 
 module.exports = app;

@@ -13,9 +13,7 @@ module.exports.getAll = async function (req, res) {
 module.exports.getById = async function (req, res) {
     try {
         const category = await Category.findById({ _id: req.params.id });
-        setTimeout(() => {
-            res.status(200).json(category);
-        }, 2000);
+        res.status(200).json(category);
     } catch (e) {
         errorHandler(res, e)
     }
@@ -30,7 +28,6 @@ module.exports.delete = async function (req, res) {
     }
 };
 module.exports.create = async function (req, res) {
-    console.log(req.body);
     const category = new Category(
         {
             name: req.body.name,
@@ -47,6 +44,20 @@ module.exports.create = async function (req, res) {
         errorHandler(res, e);
     }
 };
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
+    const updated = {
+        name: req.body.name,
+        user: req.user.id,
+        imageSrc: req.file ? req.file.path : ''
+    };
+    try {
+        const position = await Category.findOneAndUpdate(
+            {_id: req.params.id},
+            {$set: updated},
+            {new: true});
+        res.status(200).json(position);
 
+    } catch (e) {
+        errorHandler(res, e);
+    }
 };
