@@ -1,0 +1,49 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier/@typescript-eslint",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-else-return": [
+      "error",
+      {
+        "allowElseIf": false
+      }
+    ],
+    "no-console": "warn",
+    "no-alert": "warn",
+    "semi": "error",
+    "no-unused-expressions": "error",
+    "no-lonely-if": "warn",
+    "no-whitespace-before-property": "error",
+    "semi-spacing": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "space-in-parens": "error",
+    "generator-star-spacing": [
+      "error",
+      "after"
+    ]
+  }
+}
