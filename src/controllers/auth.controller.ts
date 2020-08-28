@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { User } from '../../models/User';
-import errorHandler from '../../utils/errorHandler';
+import { User } from '../models/User';
+import errorHandler from '../utils/errorHandler';
 import { Request, Response } from 'express';
 
 export async function login(req: Request, res: Response): Promise<void> {
@@ -49,11 +49,11 @@ export async function register(req: Request, res: Response): Promise<void> {
     });
     try {
       await user.save();
-      const newCandidtae = await User.findOne({ email: req.body.email });
+      const newCandidate = await User.findOne({ email: req.body.email });
       const token = jwt.sign(
         {
-          email: newCandidtae.email,
-          userId: newCandidtae._id,
+          email: newCandidate.email,
+          userId: newCandidate._id,
         },
         'dev-jwt',
         { expiresIn: 60 * 60 },

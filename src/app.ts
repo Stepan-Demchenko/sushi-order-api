@@ -5,7 +5,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import authRoutes from './routes/auth';
-import orderRoutes from './routes/order';
 import orderCategory from './routes/category';
 import orderPosition from './routes/position';
 import { middleware } from './middleware/passport';
@@ -22,12 +21,11 @@ middleware(passport);
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded());
 
 // parse application/json
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
-app.use('/api/order', orderRoutes);
 app.use('/api/category', orderCategory);
 app.use('/api/position', orderPosition);
 app.use('/api/uploads', express.static(process.cwd() + '/uploads'));

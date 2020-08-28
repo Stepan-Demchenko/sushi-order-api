@@ -17,4 +17,4 @@ const userSchema = new Schema({
         required: true,
     },
 });
-exports.User = model('users', userSchema);
+exports.User = model('User', userSchema);

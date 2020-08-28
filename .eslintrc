@@ -25,7 +25,6 @@
         "allowElseIf": false
       }
     ],
-    "no-console": "warn",
     "no-alert": "warn",
     "semi": "error",
     "no-unused-expressions": "error",

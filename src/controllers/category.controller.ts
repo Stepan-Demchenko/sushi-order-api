@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 
 export async function getAll(req: Request, res: Response): Promise<void> {
   try {
-    const categories = await Category.find({ user: req.user.id });
+    const categories = await Category.find({ user: req.body.user.id });
     res.status(200).json(categories);
   } catch (e) {
     errorHandler(res, e);
@@ -34,7 +34,7 @@ export async function remove(req: Request, res: Response): Promise<void> {
 export async function create(req: Request, res: Response): Promise<void> {
   const category = new Category({
     name: req.body.name,
-    user: req.user.id,
+    user: req.body.user.id,
     imageSrc: req.file ? req.file.path : '',
   });
 
@@ -51,7 +51,7 @@ export async function create(req: Request, res: Response): Promise<void> {
 export async function update(req: Request, res: Response): Promise<void> {
   const updated = {
     name: req.body.name,
-    user: req.user.id,
+    user: req.body.user.id,
     imageSrc: req.file ? req.file.path : '',
   };
   try {
