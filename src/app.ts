@@ -28,6 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(express.json());
-app.use('/api/auth', authRoutes);
-app.use('/api/category', orderCategory);
-app.use('/api/uploads', express.static(process.cwd() + '/uploads'));
+app.use('/auth', authRoutes);
+app.use('/category', orderCategory);
+app.use('/uploads', express.static(process.cwd() + '/uploads'));
