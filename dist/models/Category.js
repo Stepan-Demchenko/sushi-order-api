@@ -1,18 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Category = void 0;
 const mongoose_1 = require("mongoose");
-const categorySchema = mongoose_1.Schema({
+const categorySchema = new mongoose_1.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
-    user: {
-        ref: 'users',
-        type: mongoose_1.Schema.Types.ObjectId
-    },
-    imageSrc: {
-        type: String,
-        default: ''
-    }
 });
-exports.default = mongoose_1.model("categories", categorySchema);
+exports.Category = mongoose_1.model('Category', categorySchema);

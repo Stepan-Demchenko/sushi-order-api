@@ -1,5 +1,4 @@
-import Category from '../models/Category';
-import Position from '../models/Position';
+import { Category } from '../models/Category';
 import errorHandler from '../utils/errorHandler';
 import { Request, Response } from 'express';
 
@@ -24,7 +23,6 @@ export async function getById(req: Request, res: Response): Promise<void> {
 export async function remove(req: Request, res: Response): Promise<void> {
   try {
     await Category.remove({ _id: req.params.id });
-    await Position.remove({ category: req.params.id });
     res.status(200).json({ message: 'Removed' });
   } catch (e) {
     errorHandler(res, e);

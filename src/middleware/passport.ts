@@ -3,7 +3,7 @@ import { model } from 'mongoose';
 import key from '../config/keys';
 import { PassportStatic } from 'passport';
 
-const User = model('users');
+const User = model('User');
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: key.jwtKey,

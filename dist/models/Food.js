@@ -16,9 +16,9 @@ const foodSchema = new mongoose_1.Schema({
         type: Number,
         required: true,
     },
-    typeOfFood: {
+    category: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'FoodType',
+        ref: 'Category',
     },
     img: {
         type: String,

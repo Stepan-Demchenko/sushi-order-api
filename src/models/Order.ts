@@ -1,29 +1,33 @@
-import {Schema, model} from "mongoose";
+import { Schema, model, Document } from 'mongoose';
 
-const ordersSchema = new Schema({
-    user: {
-        ref: 'users',
-        type: Schema.Types.ObjectId
+interface Client {
+  phone: string;
+  email?: string;
+  name: string;
+}
+
+export interface Order extends Document {
+  client: Client;
+  date: Date;
+  order: number[];
+}
+
+const ordersSchema = new Schema<Order>({
+  client: {
+    type: Object,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  order: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Food',
+      required: true,
     },
-    date: {
-        type: Date,
-        default: Date.now
-    },
-    order: {
-        type: Number,
-        required: true
-    },
-    list: [{
-        name: {
-            type: String
-        },
-        quantity: {
-            type: Number
-        },
-        cost: {
-            type: Number
-        }
-    }]
+  ],
 });
 
-export default model<any>("orders", ordersSchema);
+export const Order = model<Order>('Order', ordersSchema);

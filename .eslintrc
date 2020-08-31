@@ -15,9 +15,7 @@
     "project": "./tsconfig.json",
     "tsconfigRootDir": "."
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-else-return": [
       "error",
@@ -26,7 +24,7 @@
       }
     ],
     "no-alert": "warn",
-    "semi": "error",
+    "semi": [2, "always", { "omitLastInOneLineBlock": true }],
     "no-unused-expressions": "error",
     "no-lonely-if": "warn",
     "no-whitespace-before-property": "error",
@@ -40,9 +38,6 @@
       }
     ],
     "space-in-parens": "error",
-    "generator-star-spacing": [
-      "error",
-      "after"
-    ]
+    "generator-star-spacing": ["error", "after"]
   }
 }

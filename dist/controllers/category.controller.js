@@ -13,13 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.update = exports.create = exports.remove = exports.getById = exports.getAll = void 0;
-const Category_1 = __importDefault(require("../models/Category"));
-const Position_1 = __importDefault(require("../models/Position"));
+const Category_1 = require("../models/Category");
 const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
 function getAll(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const categories = yield Category_1.default.find({ user: req.user.id });
+            const categories = yield Category_1.Category.find({ user: req.body.user.id });
             res.status(200).json(categories);
         }
         catch (e) {
@@ -31,7 +30,7 @@ exports.getAll = getAll;
 function getById(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const category = yield Category_1.default.findById({ _id: req.params.id });
+            const category = yield Category_1.Category.findById({ _id: req.params.id });
             res.status(200).json(category);
         }
         catch (e) {
@@ -43,8 +42,7 @@ exports.getById = getById;
 function remove(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield Category_1.default.remove({ _id: req.params.id });
-            yield Position_1.default.remove({ category: req.params.id });
+            yield Category_1.Category.remove({ _id: req.params.id });
             res.status(200).json({ message: 'Removed' });
         }
         catch (e) {
@@ -55,9 +53,9 @@ function remove(req, res) {
 exports.remove = remove;
 function create(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const category = new Category_1.default({
+        const category = new Category_1.Category({
             name: req.body.name,
-            user: req.user.id,
+            user: req.body.user.id,
             imageSrc: req.file ? req.file.path : '',
         });
         try {
@@ -76,11 +74,11 @@ function update(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const updated = {
             name: req.body.name,
-            user: req.user.id,
+            user: req.body.user.id,
             imageSrc: req.file ? req.file.path : '',
         };
         try {
-            const position = yield Category_1.default.findOneAndUpdate({ _id: req.params.id }, { $set: updated }, { new: true });
+            const position = yield Category_1.Category.findOneAndUpdate({ _id: req.params.id }, { $set: updated }, { new: true });
             res.status(200).json(position);
         }
         catch (e) {

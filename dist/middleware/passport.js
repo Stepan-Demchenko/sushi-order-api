@@ -16,7 +16,7 @@ exports.middleware = void 0;
 const passport_jwt_1 = require("passport-jwt");
 const mongoose_1 = require("mongoose");
 const keys_1 = __importDefault(require("../config/keys"));
-const User = mongoose_1.model('users');
+const User = mongoose_1.model('User');
 const options = {
     jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: keys_1.default.jwtKey,

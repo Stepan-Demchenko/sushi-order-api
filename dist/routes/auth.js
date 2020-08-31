@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const controller = __importStar(require("../controllers/auth/auth.controller"));
+const controller = __importStar(require("../controllers/auth.controller"));
 const router = express_1.default.Router();
 router.post('/login', controller.login);
 router.post('/register', controller.register);

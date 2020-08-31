@@ -1,18 +1,15 @@
-import {Schema, model} from "mongoose";
+import { Document, model, Schema } from 'mongoose';
 
-const categorySchema = Schema({
+export interface Category extends Document {
+    name: string;
+}
+
+const categorySchema: Schema = new Schema<Category>({
     name: {
         type: String,
-        required: true
+        required: true,
     },
-    user: {
-        ref: 'users',
-        type: Schema.Types.ObjectId
-    },
-    imageSrc: {
-        type: String,
-        default: ''
-    }
 });
 
-export default model<any>("categories", categorySchema);
+export const Category = model<Category>('Category', categorySchema);
+

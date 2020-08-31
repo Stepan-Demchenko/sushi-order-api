@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.register = exports.login = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const User_1 = require("../../models/User");
-const errorHandler_1 = __importDefault(require("../../utils/errorHandler"));
+const User_1 = require("../models/users/User");
+const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const candidate = yield User_1.User.findOne({
@@ -64,10 +64,10 @@ function register(req, res) {
             });
             try {
                 yield user.save();
-                const newCandidtae = yield User_1.User.findOne({ email: req.body.email });
+                const { _id, email } = yield User_1.User.findOne({ email: req.body.email });
                 const token = jsonwebtoken_1.default.sign({
-                    email: newCandidtae.email,
-                    userId: newCandidtae._id,
+                    email: email,
+                    userId: _id,
                 }, 'dev-jwt', { expiresIn: 60 * 60 });
                 res.status(201).json({
                     token: `Bearer ${token}`,

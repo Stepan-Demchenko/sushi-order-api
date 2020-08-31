@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { Router } from 'express';
 import passport from 'passport';
 import { upload } from '../middleware/upload';
 import * as controller from '../controllers/category.controller';
 
-const router = express.Router();
+const router: Router = express.Router();
 router.get('/', passport.authenticate('jwt', { session: false }), controller.getAll);
 router.get('/:id', passport.authenticate('jwt', { session: false }), controller.getById);
 router.delete('/:id', passport.authenticate('jwt', { session: false }), controller.remove);

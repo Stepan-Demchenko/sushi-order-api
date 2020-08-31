@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import { Ingredient } from './Ingredient';
-import { FoodType } from './FoodType';
+import { Category } from './Category';
 
 export interface Food extends Document {
   title: string;
@@ -8,7 +8,7 @@ export interface Food extends Document {
   weight: number;
   img: string;
   description: string;
-  typeOfFood: FoodType['_id'];
+  typeOfFood: Category['_id'];
   ingredients: Ingredient['_id'];
 }
 
@@ -26,9 +26,9 @@ const foodSchema: Schema = new Schema({
     type: Number,
     required: true,
   },
-  typeOfFood: {
+  category: {
     type: Schema.Types.ObjectId,
-    ref: 'FoodType',
+    ref: 'Category',
   },
   img: {
     type: String,

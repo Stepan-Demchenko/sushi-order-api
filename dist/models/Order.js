@@ -1,29 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Order = void 0;
 const mongoose_1 = require("mongoose");
 const ordersSchema = new mongoose_1.Schema({
-    user: {
-        ref: 'users',
-        type: mongoose_1.Schema.Types.ObjectId
+    client: {
+        type: Object,
+        required: true,
     },
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     },
-    order: {
-        type: Number,
-        required: true
-    },
-    list: [{
-            name: {
-                type: String
-            },
-            quantity: {
-                type: Number
-            },
-            cost: {
-                type: Number
-            }
-        }]
+    order: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Food',
+            required: true,
+        },
+    ],
 });
-exports.default = mongoose_1.model("orders", ordersSchema);
+exports.Order = mongoose_1.model('Order', ordersSchema);
